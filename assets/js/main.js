@@ -2,6 +2,7 @@
 CONSEGNA
 
 1 - Il computer generare 16 numeri casuali(le bombe) in base al range di difficoltà.
+
 2 - Nella stessa cella può essere posizionata al massimo una bomba.
 3 - In seguito l'utente clicca su una cella: 
 4 - se il numero è presente nella lista 
@@ -69,11 +70,7 @@ buttonEl.addEventListener('click', function() {
         const num = Number(boxEl.textContent);
 
         boxEl.addEventListener('click', function() {
-            if (boxEl.style.backgroundColor === "lightblue") {
-                boxEl.style.backgroundColor = "white";
-            } else {
-                boxEl.style.backgroundColor = "lightblue";
-            }
+            boxEl.classList.toggle('lightblue');
             console.log(num);
         })
 
