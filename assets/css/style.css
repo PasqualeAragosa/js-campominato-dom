@@ -54,5 +54,6 @@ select {
 
 .red {
     background-color: red;
+    color: black;
 }
 /* #endregion Main */
