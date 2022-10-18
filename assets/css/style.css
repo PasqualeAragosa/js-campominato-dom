@@ -1,0 +1,39 @@
+/* #region Common */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: coral;
+}
+
+img {
+    max-width: 100%;
+}
+
+.my_container {
+    width: 80%;
+    margin: auto;
+}
+button {
+    margin: 1rem;
+    padding: 0.25rem;
+}
+
+select {
+    padding: 0.45rem;
+}
+/* #endregion Common */
+
+/* #region Main */
+.box {
+    height: 80px;
+    border: 1px solid black;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* #endregion Main */
