@@ -14,21 +14,13 @@ CONSEGNA
 */
 
 //Funzioni
-function getRandomNum(min, max, sizeArr) {
+function getRandomNum(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
-//Agganciare gli array con tutti i numeri inseriti
-//selezionare quelli che coincidono con l'array bombe
-//renderli rossi
-
 function getBoxesRed(arrayBombs, sizeArr) {
     const allBoxEl = document.querySelectorAll('.box');
-    //console.log('allBoxEl: ', allBoxEl);
-    //console.log('allBoxEl[9]: ', allBoxEl[9].textContent);
     for (let i = 0; i < sizeArr; i++) {
-        //console.log('arrayBombs: ', arrayBombs);
-        //console.log('allBoxEl[i]: ', allBoxEl[i].textContent);
         if (arrayBombs.includes(Number(allBoxEl[i].textContent))) {
             allBoxEl[i].classList.add('red');
         }
@@ -48,7 +40,7 @@ buttonEl.addEventListener('click', function() {
     //Aggiung0 un'istruzione per cui la griglia si resetti
     gridEL.innerHTML = '';
     //Inizializzo un contatore
-    let current = 0;
+    let counter = 0;
 
     //Creo la dimensione dell'array di bombe
     const sizeBombs = 16;
@@ -76,13 +68,11 @@ buttonEl.addEventListener('click', function() {
         boxEl.addEventListener('click', function() {
             boxEl.classList.add('lightblue');
             if (bombs.includes(num)) {
-                boxEl.classList.add('red');
                 getBoxesRed(bombs, sizeLvl);
+                gridEL.insertAdjacentHTML('beforeend', `<h1>Hai totalizzato: ${counter}</h1>`);
             }
-            current++;
+            counter++;
             console.log(num);
-        })
-        
-        //gridEL.innerHTML = `<h1>Hai totalizzato: ${current}</h1>`;
+        });
     }
 });
