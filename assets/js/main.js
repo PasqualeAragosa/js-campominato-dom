@@ -12,6 +12,11 @@ CONSEGNA
 6 - Al termine il software deve comunicare il numero di volte che l’utente ha cliccato su una cella che non era una bomba.
 */
 
+//Funzioni
+function getRandomNum(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
 //Seleziono il bottone
 const buttonEl = document.querySelector('.my_btn');
 
@@ -24,6 +29,36 @@ buttonEl.addEventListener('click', function() {
     const gridEL = document.querySelector('.grid');
     //Aggiung0 un'istruzione per cui la griglia si resetti
     gridEL.innerHTML = ''; 
+
+    //Creo la dimensione dell'array di bombe
+    const sizeBombs = 16;
+    //Creo un array di bombe
+    const bombs = [];
+    //Ciclo fino al completamento dell'array
+    for (let i = 0; i < sizeBombs; i++) {
+        //Genero un numero casuale
+        let bomb = getRandomNum(1, sizeLvl);
+        //Se l'array ha già un numero
+        if (i > 0) {
+            //Genero un numero casuale
+            bomb = getRandomNum(1, sizeLvl);
+            //
+            let repetNum = false;
+            for (let i = 0; i < bombs.length; i++) {
+                if (bomb === bombs[i]) {
+                    repetNum = true;
+                }
+            }
+            if (repetNum === false) {
+                bombs.push(bomb);
+            }
+            
+        } else {
+            //Inserisco il primo numero nell'arry vuoto
+            bombs.push(bomb);
+        }
+    }
+    console.log('Array di bombe', bombs);
 
     for (let i = sizeLvl; i > 0; i--) {
         //Inserisco il markup di ogni box nel DOM
