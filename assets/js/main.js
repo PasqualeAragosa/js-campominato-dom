@@ -57,18 +57,14 @@ buttonEl.addEventListener('click', function() {
         const num = Number(boxEl.textContent);
         //Aggiungo un toggle colorato
         boxEl.addEventListener('click', function() {
-            boxEl.classList.toggle('lightblue');
+            boxEl.classList.add('lightblue');
             if (bombs.includes(num)) {
-                boxEl.classList.toggle('red');
-                gridEL.innerHTML = `<h1>Hai totalizzato: ${current}</h1>`;
+                
             }
             current++;
             console.log(num);
         })
-
-        // if (boxEl.style.backgroundColor === 'red') {
-        //     gridEL.innerHTML = `<h1">Hai totalizzato: ${current}</h1>`;
-        // }
-
+        
+        //gridEL.innerHTML = `<h1>Hai totalizzato: ${current}</h1>`;
     }
 });
