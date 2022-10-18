@@ -6,17 +6,22 @@
 }
 
 body {
-    background-color: coral;
+    background-color: #90A1C8;
+    color: #8A4A64;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
 }
 
 img {
     max-width: 100%;
 }
 
-.my_container {
-    width: 80%;
-    margin: auto;
+h1 {
+    color: black;
+    font-size: 3rem;
+    margin-top: 3rem;
 }
+
 button {
     margin: 1rem;
     padding: 0.25rem;
@@ -25,12 +30,18 @@ button {
 select {
     padding: 0.45rem;
 }
+
+.my_container {
+    width: 80%;
+    margin: auto;
+}
 /* #endregion Common */
 
 /* #region Main */
 .box {
-    height: 80px;
+    aspect-ratio: 1 / 1;
     border: 1px solid black;
+    border-radius: 1rem;
     background-color: white;
     display: flex;
     justify-content: center;
@@ -39,5 +50,9 @@ select {
 
 .lightblue {
     background-color: lightblue;
+}
+
+.red {
+    background-color: red;
 }
 /* #endregion Main */
