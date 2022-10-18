@@ -18,6 +18,8 @@ function getRandomNum(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
+
+
 //Seleziono il bottone
 const buttonEl = document.querySelector('.my_btn');
 
@@ -58,9 +60,6 @@ buttonEl.addEventListener('click', function() {
         //Aggiungo un toggle colorato
         boxEl.addEventListener('click', function() {
             boxEl.classList.add('lightblue');
-            if (bombs.includes(num)) {
-                
-            }
             current++;
             console.log(num);
         })
