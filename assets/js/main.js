@@ -43,17 +43,18 @@ buttonEl.addEventListener('click', function() {
         if (i > 0) {
             //Genero un numero casuale
             bomb = getRandomNum(1, sizeLvl);
-            //
+            //Se repetNum rimane false allora non ci sono numeri uguali
             let repetNum = false;
+            //Ciclo tutta la lunghezza dell'array in maniera dinamica
             for (let i = 0; i < bombs.length; i++) {
+                //Se repetNum true allora già esiste un numero uguale
                 if (bomb === bombs[i]) {
                     repetNum = true;
                 }
             }
             if (repetNum === false) {
                 bombs.push(bomb);
-            }
-            
+            } 
         } else {
             //Inserisco il primo numero nell'arry vuoto
             bombs.push(bomb);
@@ -64,11 +65,13 @@ buttonEl.addEventListener('click', function() {
     for (let i = sizeLvl; i > 0; i--) {
         //Inserisco il markup di ogni box nel DOM
         gridEL.insertAdjacentHTML('afterbegin', `<div class="box">${i}</div>`);
-
+        //Seleziono sempre il primo box appena inserito
         const boxEl = document.querySelector('.box');
+        //Aggiungo la larghezza ad ogni box
         boxEl.style.width = `calc(100% / ${Math.sqrt(sizeLvl)})`;
+        //Seleziono il numero di ogni box
         const num = Number(boxEl.textContent);
-
+        //Aggiungo un toggle colorato
         boxEl.addEventListener('click', function() {
             boxEl.classList.toggle('lightblue');
             console.log(num);
