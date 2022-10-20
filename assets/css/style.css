@@ -25,30 +25,31 @@ h1 {
 button {
     margin: 1rem;
     padding: 0.25rem;
+    border-radius: 1rem;
 }
 
 select {
     padding: 0.45rem;
+    border-radius: 1rem;
 }
 
 .my_container {
     width: 80%;
     margin: auto;
 }
-/* #endregion Common */
 
-/* #region Main */
 .box {
-    aspect-ratio: 1 / 1;
+    background-color: white;
     border: 1px solid black;
     border-radius: 1rem;
-    background-color: white;
+    aspect-ratio: 2 / 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
-.lightblue {
+.blue {
     background-color: lightblue;
 }
 
@@ -56,4 +57,8 @@ select {
     background-color: red;
     color: black;
 }
+/* #endregion Common */
+
+/* #region Main */
+
 /* #endregion Main */

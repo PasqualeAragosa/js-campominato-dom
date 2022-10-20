@@ -1,78 +1,87 @@
-/* 
-CONSEGNA
-
-1 - Il computer generare 16 numeri casuali(le bombe) in base al range di difficoltà.
-2 - Nella stessa cella può essere posizionata al massimo una bomba.
-3 - In seguito l'utente clicca su una cella: 
-4 - se il numero è presente nella lista 
-        4.1 - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina.
-    Altrimenti 
-        4.2 - la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
-
-5 - La partita termina quando il giocatore clicca su una bomba o quando ha rivelato tutte le celle che non sono bombe.
-6 - Al termine il software deve comunicare il numero di volte che l’utente ha cliccato su una cella che non era una bomba.
-*/
-
-//Funzioni
-function getRandomNum(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) ) + min;
+//FUNZIONI
+function insertNumGrid(size, divGrid) {
+    for (let i = 0; i < size; i++) {
+        const boxMarkup = `<div class="box box_${i + 1}">${i + 1}</div> `;
+        divGrid.insertAdjacentHTML('beforeend', boxMarkup);
+    };
 }
 
-function getBoxesRed(arrayBombs, sizeArr) {
-    const allBoxEl = document.querySelectorAll('.box');
-    for (let i = 0; i < sizeArr; i++) {
-        if (arrayBombs.includes(Number(allBoxEl[i].textContent))) {
-            allBoxEl[i].classList.add('red');
-        }
+function getNumBox(size) {
+    const allBox = document.querySelectorAll('.box');
+    let allNumBox = [];
+
+    for (let i = 0; i < size; i++) {
+        allNumBox.push(Number(allBox[i].textContent));
+    }
+    
+    return allNumBox;
+}
+
+function giveWidthBox(size) {
+    const allBox = document.querySelectorAll('.box');
+
+    for (let i = 0; i < size; i++) {
+        allBox[i].style.width = `calc(100% / ${Math.sqrt(size)})`;
     }
 }
 
-//Seleziono il bottone
+function getNumRand(size, max) {
+    let allNum = [];
+
+    while (allNum.length !== size) {
+        const num = Math.floor((Math.random() * max) + 1);
+
+        if (allNum.length < 1) {
+            allNum.push(num);
+        } else if (!allNum.includes(num)) {
+            allNum.push(num);
+        }
+    }
+
+    return allNum;
+}
+
+//Crea funzione che rende tutti rossi
+
 const buttonEl = document.querySelector('.my_btn');
 
 buttonEl.addEventListener('click', function() {
-    //Seleziono 'select'
+    
+    //VARIABILI
+    const gridEl = document.querySelector('.grid');
     const selectEl = document.getElementById('lvl');
-    //Acquisisco il valore del livello
-    const sizeLvl = Number(selectEl.options[selectEl.selectedIndex].value);
-    //Seleziono la griglia
-    const gridEL = document.querySelector('.grid');
-    //Aggiung0 un'istruzione per cui la griglia si resetti
-    gridEL.innerHTML = '';
-    //Inizializzo un contatore
-    let counter = 0;
+    const sizeGrid = Number(selectEl.options[selectEl.selectedIndex].value);
+    let numbersBox = [];
+    let numbersRand = [];
 
-    //Creo la dimensione dell'array di bombe
-    const sizeBombs = 16;
-    //Creo un array di bombe
-    const bombs = [];
+    //Reset Grid
+    gridEl.innerHTML = '';
 
-    while (bombs.length != sizeBombs) {
-        const bomb = getRandomNum(1, sizeLvl);
-        if (!bombs.includes(bomb)) {
-            bombs.push(bomb);
-        }
-    }
-    console.log('Array di bombe', bombs);
+    insertNumGrid(sizeGrid, gridEl);
+    
+    numbersBox = getNumBox(sizeGrid);
 
-    for (let i = sizeLvl; i > 0; i--) {
-        //Inserisco il markup di ogni box nel DOM
-        gridEL.insertAdjacentHTML('afterbegin', `<div class="box">${i}</div>`);
-        //Seleziono sempre il primo box appena inserito
-        const boxEl = document.querySelector('.box');
-        //Aggiungo la larghezza ad ogni box
-        boxEl.style.width = `calc(100% / ${Math.sqrt(sizeLvl)})`;
-        //Seleziono il numero di ogni box
-        const num = Number(boxEl.textContent);
-        //Aggiungo un toggle colorato
-        boxEl.addEventListener('click', function() {
-            boxEl.classList.add('lightblue');
-            if (bombs.includes(num)) {
-                getBoxesRed(bombs, sizeLvl);
-                gridEL.insertAdjacentHTML('beforeend', `<h1>Hai totalizzato: ${counter}</h1>`);
+    giveWidthBox(sizeGrid);
+
+    numbersRand = getNumRand(16, sizeGrid);
+    console.log('Numeri bomba: ', numbersRand);
+
+    const allBox = document.getElementsByClassName('box');
+
+    for (let i = 0; i < sizeGrid; i++) {
+        allBox[i].addEventListener('click', function () {
+            const num = Number(allBox[i].textContent);
+
+            if (numbersRand.includes(num)) {
+                //Rendi tutti i numeri rossi
+                allBox[i].classList.add('red');
+            } else {
+                allBox[i].classList.add('blue');
             }
-            counter++;
-            console.log(num);
         });
     }
+
+   // o crei una funzione che richiami sopra nell'if
+   // oppure bho
+
 });
