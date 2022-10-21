@@ -42,6 +42,19 @@ function getNumRand(size, max) {
 }
 
 //Crea funzione che rende tutti rossi
+function getRedBox(size, arrayRand) {
+    const allBox = document.getElementsByClassName('box');
+    //console.log(allBox);
+
+    for (let i = 0; i < size; i++) {
+        const num = Number(allBox[i].textContent);
+        if (arrayRand.includes(num)) {
+            console.log('Num: ', num);
+            num.classList.add('red');
+        }
+        
+    }
+}
 
 const buttonEl = document.querySelector('.my_btn');
 
@@ -70,11 +83,11 @@ buttonEl.addEventListener('click', function() {
 
     for (let i = 0; i < sizeGrid; i++) {
         allBox[i].addEventListener('click', function () {
-            const num = Number(allBox[i].textContent);
+            const numberClicked = Number(allBox[i].textContent);
 
-            if (numbersRand.includes(num)) {
-                //Rendi tutti i numeri rossi
-                allBox[i].classList.add('red');
+            if (numbersRand.includes(numberClicked)) {
+                getRedBox(sizeGrid, numbersRand);
+                //allBox[i].classList.add('red');
             } else {
                 allBox[i].classList.add('blue');
             }
